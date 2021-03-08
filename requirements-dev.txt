@@ -1,0 +1,8 @@
+# Publish this project as a pip package
+-r requirements.txt
+plyfile==0.7.3
+setuptools~=54.1.0
+wheel~=0.36.2
+twine~=3.3.0
+tqdm~=4.59.0
+setuptools-scm~=5.0.2

@@ -1,0 +1,32 @@
+﻿<!-- Invalid file used with deprecated meshlabserver.exe. Not works with pymeshlab Python library -->
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FilterScript >
+<FilterScript>
+  <filter name="Point Cloud Simplification">
+    <Param tooltip="The desired number of samples.The ray of the disk is calculated according to the sampling density." description="Number of samples" type="RichInt" value="1000000" name="SampleNum" />
+    <Param min="0" tooltip="If not zero this parameter override the previous parameter to allow exact radius specification" description="Explicit Radius" type="RichAbsPerc" max="113.487" value="0" name="Radius" />
+    <Param tooltip="If true it will use a simple heuristic for choosing the samples. At a small cost (it can slow a bit the process) it usually improve the maximality of the generated sampling." description="Best Sample Heuristic" type="RichBool" value="true" name="BestSampleFlag" />
+    <Param tooltip="Used only if the Best Sample Flag is true. It control the number of attempt that it makes to get the best sample. It is reasonable that it is smaller than the Montecarlo oversampling factor." description="Best Sample Pool Size" type="RichInt" value="10" name="BestSamplePool" />
+    <Param tooltip="If requested it will try to do a dicotomic search for the best poisson disk radius that will generate the requested number of samples with a tolerance of the 0.5%. Obviously it takes much longer." description="Exact number of samples" type="RichBool" value="false" name="ExactNumFlag" />
+  </filter>
+  <filter name="Compute normals for point sets">
+    <Param tooltip="The number of neighbors used to estimate normals." description="Neighbour num" type="RichInt" value="10" name="K" />
+    <Param tooltip="The number of smoothing iteration done on the p used to estimate and propagate normals." description="Smooth Iteration" type="RichInt" value="0" name="smoothIter" />
+    <Param tooltip="If the 'viewpoint' (i.e. scanner position) is known, it can be used to disambiguate normals orientation, so that all the normals will be oriented in the same direction." description="Flip normals w.r.t. viewpoint" type="RichBool" value="false" name="flipFlag" />
+    <Param tooltip="The viewpoint position can be set by hand (i.e. getting the current viewpoint) or it can be retrieved from mesh camera, if the viewpoint position is stored there." description="Viewpoint Pos." type="RichPoint3f" value="10" name="viewPos" x="0" y="0" z="0" />
+  </filter>
+  <filter name="Surface Reconstruction: Screened Poisson">
+    <Param value="0" name="cgDepth" type="RichInt"  description="Conjugate Gradients Depth" tooltip="This integer is the depth up to which a conjugate-gradients solver will be used to solve the linear system. Beyond this depth Gauss-Seidel relaxation will be used. The default value for this parameter is 0." />
+    <Param value="false" name="confidence" type="RichBool" description="Confidence Flag" tooltip="Enabling this flag tells the reconstructor to use the quality as confidence information; this is done by scaling the unit normals with the quality values. When the flag is not enabled, all normals are normalized to have unit-length prior to reconstruction." />
+    <Param value="8" name="depth" type="RichInt" description="Reconstruction Depth" tooltip="This integer is the maximum depth of the tree that will be used for surface reconstruction. Running at depth d corresponds to solving on a voxel grid whose resolution is no larger than 2^d x 2^d x 2^d. Note that since the reconstructor adapts the octree to the sampling density, the specified reconstruction depth is only an upper bound. The default value for this parameter is 8." />
+    <Param value="5" name="fullDepth" type="RichInt" description="Adaptive Octree Depth" tooltip="This integer specifies the depth beyond depth the octree will be adapted. At coarser depths, the octree will be complete, containing all 2^d x 2^d x 2^d nodes. The default value for this parameter is 5." />
+    <Param value="8" name="iters" type="RichInt" description="Gauss-Seidel Relaxations" tooltip="This integer value specifies the number of Gauss-Seidel relaxations to be performed at each level of the hierarchy. The default value for this parameter is 8." />
+    <Param value="4" name="pointWeight" type="RichInt" description="Interpolation Weight" tooltip="This floating point value specifies the importants that interpolation of the point samples is given in the formulation of the screened Poisson equation. The results of the original (unscreened) Poisson Reconstruction can be obtained by setting this value to 0. The default value for this parameter is 4." />
+    <Param value="false" name="preClean" type="RichBol" description="Pre-Clean" tooltip="Enabling this flag force a cleaning pre-pass on the data removing all unreferenced vertices or vertices with null normals." />
+    <Param value="1.5" name="samplesPerNode" type="RichFloat" description="Minimum Number of Samples" tooltip="This floating point value specifies the minimum number of sample points that should fall within an octree node as the octree construction is adapted to sampling density. For noise-free samples, small values in the range [1.0 - 5.0] can be used. For more noisy samples, larger values in the range [15.0 - 20.0] may be needed to provide a smoother, noise-reduced, reconstruction. The default value is 1.5."/>
+    <Param value="1.0" name="scale" type="RichFloat" description="Scale Factor" tooltip="This floating point value specifies the ratio between the diameter of the cube used for reconstruction and the diameter of the samples' bounding cube. The default value is 1.1." />
+    <Param value="false" name="visibleLayer" type="RichBol" description="Merge all visible layers" tooltip="Enabling this flag means that all the visible layers will be used for providing the points." />
+  </filter>
+  <filter name="Delete Current Mesh" />
+  <filter name="Delete Current Mesh" />
+</FilterScript>
