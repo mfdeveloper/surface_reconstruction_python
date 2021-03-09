@@ -113,15 +113,14 @@ class PyMeshlabSurface(SurfaceStrategy):
         self.mesh_set = pymeshlab.MeshSet()
         self.point_cloud = pymeshlab.Mesh()
         self.mesh = pymeshlab.Mesh()
-        self.__filter_script_file = filter_script_file
 
-        super().__init__(point_cloud_file, output_file, clean_up)
+        super().__init__(point_cloud_file, output_file, filter_script_file, clean_up)
 
     def load_file(self, file_path: str) -> pymeshlab.Mesh:
         self.mesh_set.load_new_mesh(file_path)
 
-        if len(self.__filter_script_file) > 0:
-            self.mesh_set.load_filter_script(self.__filter_script_file)
+        if len(self.filter_script_file) > 0:
+            self.mesh_set.load_filter_script(self.filter_script_file)
 
         self.point_cloud = self.mesh_set.current_mesh()
         return self.mesh_set.current_mesh()
@@ -130,7 +129,7 @@ class PyMeshlabSurface(SurfaceStrategy):
 
         self.applied_filters = False
 
-        if len(self.__filter_script_file) > 0:
+        if len(self.filter_script_file) > 0:
             self.mesh_set.apply_filter_script()
             self.applied_filters = True
         else:

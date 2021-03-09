@@ -23,8 +23,9 @@ class SurfaceStrategy(ABC):
 
     _parameters_key_values = {}
 
-    def __init__(self, point_cloud_file="", output_file="", clean_up=True):
+    def __init__(self, point_cloud_file="", output_file="", filter_script_file="", clean_up=True):
         self.output_file = output_file
+        self.filter_script_file = filter_script_file
         self.normals_estimated = False
         self.applied_filters = False
 
