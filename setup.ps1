@@ -3,6 +3,8 @@ param (
     [string]
     $VirtualEnvFolder = 'venv',
     [bool]
+    $Force = $true,
+    [bool]
     $Execute = $true
 )
 
@@ -148,7 +150,6 @@ function Mount-Virtual-Env {
 #>
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $false)]
         [string]
         $FolderName = 'venv'
     )
@@ -156,6 +157,11 @@ function Mount-Virtual-Env {
     if ($FolderName.Length -le 0) {
         Write-Error "The virtualenv folder '$FolderName' is invalid"
         return $false
+    }
+
+    if ($Force) {
+        Write-Host "Removing folder '$FolderName' ..."
+        Remove-Item ".\$FolderName" -Force
     }
     
     if ( -not(Test-Path ".\$FolderName") ) {
@@ -202,7 +208,7 @@ function Install-Packages-Dependencies {
     }
 
     if (!$invokedInstall) {
-        Write-Information 'requirements.txt file was not found'
+        Write-Host 'requirements.txt file was not found'
     }
     
 }

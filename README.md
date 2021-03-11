@@ -68,11 +68,20 @@ Quick way:
 pip install surface_reconstruction
 ```
 
-Or clone this repository and run from the project root:
+Or clone this repository and build the `.whl` file from the project root:
 
 ```bash
-python setup.py install
+cd [your-project-root]
+
+# Build the .whl package file
+python -m build --sdist --wheel .
+
+# Install locally from the .whl file
+# Where: x.x.x is the generated version from git tag
+pip install dist/surface_reconstruction-x.x.x-py3-none-any.whl
 ```
+> For more detailed, see the Wiki pages in: [Generate package](https://github.com/mfdeveloper/surface_reconstruction_python/wiki/Generate-package)
+
 
 ### Run the unit tests
 
