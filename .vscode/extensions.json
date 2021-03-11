@@ -2,6 +2,7 @@
     "recommendations": [
         "ms-python.vscode-pylance",
         "ms-python.python",
-        "be5invis.toml"
+        "be5invis.toml",
+        "ms-vscode.powershell"
     ]
 }

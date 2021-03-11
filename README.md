@@ -3,7 +3,6 @@
 Import a point cloud file and perform poisson 3D surface reconstruction algorithm, 
 integrated with third-party libraries like [open3d](http://www.open3d.org/docs/release/tutorial/geometry/surface_reconstruction.html?highlight=surface%20reconstruction#Poisson-surface-reconstruction) and [pymeshlab](https://github.com/cnr-isti-vclab/PyMeshLab)
 
-# Installation
 
 ## Dependencies
 
@@ -14,7 +13,7 @@ integrated with third-party libraries like [open3d](http://www.open3d.org/docs/r
 - [pymeshlab](https://github.com/cnr-isti-vclab/PyMeshLab) >= *0.2*
 
 
-### Development dependencies
+## Development dependencies
 
 - [setuptools](https://pypi.org/project/setuptools): For installation via `setup.py`
 - [setuptools-scm](https://pypi.org/project/setuptools-scm): To generate version numbers from **git tags**
@@ -22,84 +21,44 @@ integrated with third-party libraries like [open3d](http://www.open3d.org/docs/r
 - [twine](https://pypi.org/project/twine): Publish packages to https://pypi.org
 - [tqdm](https://pypi.org/project/tqdm): CLI progressbar when publish a package
 
-# Getting Started
+## Development guide
 
-Install a Python <= 3.8.x version using [pyenv](https://github.com/pyenv/pyenv) (recommended)
+For local installation and develop new features for this package, follow the steps below:
+
 
 ### Windows
 
-```bash
-# With Chocolatey
-choco install pyenv-win
+> Run unassigned powershell scripts on Windows requires change your execution policy with `Set-ExecutionPolicy` to `AllSigned`, or `Bypass -Scope Process`. 
+
+>See: [Execution Policies](https://docs.microsoft.com/pt-br/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.1)
+
+Run the script `setup.ps1` with [powershell](https://docs.microsoft.com/pt-pt/powershell/scripting/overview?view=powershell-7.1)
+
+```powershell
+# Default virtualenv folder is "venv"
+.\setup.ps1
+
+# Optionally, pass a custom virtualenv folder
+.\setup.ps1 -VirtualEnvFolder myenv
 ```
 
-### Linux
+If you wish run just an specific function from `setup.ps1` (e.g. `Install-Python`), execute:
 
-```bash
-# With pyenv-installer
-curl https://pyenv.run | bash
+```powershell
+powershell -command "& { . .\setup.ps1 'venv' -Execute 0; Install-Python }"
 ```
 
-### MacOS
+### Unix systems (Comming soon)
 
 ```bash
-# With homebrew
-brew update
-brew install pyenv
+# Default virtualenv folder is "venv"
+./setup.sh
+
+# Optionally, pass a custom virtual enviroment folder
+./setup.sh --virtual-env-folder myenv
 ```
 
-Check if pyenv was installed sucessfully, and if not got any error in this project
-
-```bash
-# Warning: Check if not got any error
-pyenv rehash
-```
-
-Install same Python version inside of the file **[.python-version](.python-version)** 
-
-```bash
-cd [project-folder]
-
-# Loads local version from .python-version file
-pyenv local
-
-# PS: The 3.8.2 Python version is latest available in Pyenv for Windows. 
-# On Unix systems, is possible install 3.8.8, for example.
-pyenv install 3.8.2
-
-# Check the installed version
-python --version
-```
-
-Create a **Virtual Environment** to store the packages dependencies, and activate it
-
-```bash
-python -m venv venv
-
-# Activate
-
-# Windows
-.\venv\Scripts\activate.bat
-
-# Unix systems
-./venv/Scripts/activate
-```
-
-Install all dependencies
-
-```bash
-pip install -r .\requirements-dev.txt
-```
-
-# Configure Pycharm (Optional)
-
-Define your interpreter in your preferable IDE (**Visual Studio, VSCode**...) from the virtual environment. In this case, we are using [Pycharm](https://www.jetbrains.com/pycharm) as example:
-
-1. Click on `File` => `Settings` => `Python Interpeter`
-2. Add your interpreter from your virtual environment (**recommended**)
-3. If you prefer, download from the official python.org FTP clicking on `"New enviroment"`, as showed in the picture below
-
-![pycharm-python-intepreter](./images/pycharm-venv-screenshot.png)
+For more detailed installation, see the Wiki pages in: [Installation Development](https://github.com/mfdeveloper/surface_reconstruction_python/wiki/Installation-Details)
 
 ## Install this package
 
@@ -109,20 +68,20 @@ Quick way:
 pip install surface_reconstruction
 ```
 
-Or clone the repository and run from the project root:
+Or clone this repository and run from the project root:
 
 ```bash
 python setup.py install
 ```
 
-## Run the unit tests
+### Run the unit tests
 
 ```bash
 # Run all tests of the module "surface_reconstruction_test`
 python -m unittest tests/surface_reconstruction_test.py
 ```
 
-# Usage
+## Usage
 
 Import a `.ply` file with point cloud vertices, and generate the mesh file
 
@@ -172,7 +131,7 @@ class MyCustomSurface(SurfaceStrategy):
         """
         Custom constructor with custom parameters
         """
-        super.__init__()
+        super().__init__()
   
       def load_file(self, file_path: str):
         """
