@@ -21,6 +21,9 @@ mesh_frame = o3d.geometry.TriangleMesh.create_coordinate_frame(
 )
 o3d.visualization.draw_geometries(
     [mesh, mesh_frame],
+    window_name='Meshlab Visualization',
+    width=1024,
+    height=768,
     mesh_show_back_face=True
 )
 
