@@ -8,48 +8,50 @@ class Open3dSurface(SurfaceStrategy):
 
     parameters = {
       'estimate_normals': [
-        {
-          'name': 'fast_normal_computation',
-          'description': 'Fast normal estimation',
-          'value': True
-        },
-        {
-          'name': 'normals',
-          'description': 'Points normals',
-          'value': (1, 3)
-        }
+          {
+              'name': 'fast_normal_computation',
+              'description': 'Fast normal estimation',
+              'value': True
+          },
+          {
+              'name': 'normals',
+              'description': 'Points normals',
+              'value': (1, 3)
+          }
       ],
-      'orient_normals_consistent_tangent_plane': {
-          'name': 'k',
-          'description': 'Nearest neighbors',
-          'value': 100
-      },
+      'orient_normals_consistent_tangent_plane': [
+          {
+              'name': 'k',
+              'description': 'Nearest neighbors',
+              'value': 100
+          }
+      ],
       'surface_reconstruction_screened_poisson': [
-        {
-          'name': 'depth',
-          'description': 'Maximum depth of the tree',
-          'value': 8
-        },
-        {
-          'name': 'width',
-          'description': 'Target width',
-          'value': 0
-        },
-        {
-          'name': 'scale',
-          'description': 'Ratio between the diameter of the cube',
-          'value': 1.1
-        },
-        {
-          'name': 'linear_fit',
-          'description': 'Use linear interpolation?',
-          'value': False
-        },
-        {
-          'name': 'n_threads',
-          'description': 'Number of threads used for reconstruction',
-          'value': -1
-        }
+          {
+              'name': 'depth',
+              'description': 'Maximum depth of the tree',
+              'value': 8
+          },
+          {
+              'name': 'width',
+              'description': 'Target width',
+              'value': 0
+          },
+          {
+              'name': 'scale',
+              'description': 'Ratio between the diameter of the cube',
+              'value': 1.1
+          },
+          {
+              'name': 'linear_fit',
+              'description': 'Use linear interpolation?',
+              'value': False
+          },
+          {
+              'name': 'n_threads',
+              'description': 'Number of threads used for reconstruction',
+              'value': -1
+          }
       ]
     }
 

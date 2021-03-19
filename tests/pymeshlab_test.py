@@ -8,30 +8,30 @@ import pymeshlab
 class PyMeshlabTest(unittest.TestCase):
 
     poisson_parameters = {
-      'filters': {
-        'point_cloud_simplification': {
-          # Best quality: 1000000, Simple/Low quality (default): 1000
-          'samplenum': 1000000,
-        },
-        'compute_normals_for_point_sets': {
-          'k': 5,
-          'smoothiter': 0,
-          'flipflag': False,
-          'viewpos': [0, 0, 0]
-        },
-        'surface_reconstruction_screened_poisson': {
-          'depth': 8,
-          'cgdepth': 0,
-          'fulldepth': 5,
-          'visiblelayer': False,
-          'scale': 1.1,
-          'samplespernode': 1.5,
-          'pointweight': 4,
-          'iters': 8,
-          'confidence': False,
-          'preclean': False
+        'filters': {
+            'point_cloud_simplification': {
+                # Best quality: 1000000, Simple/Low quality (default): 1000
+                'samplenum': 1000000
+            },
+            'compute_normals_for_point_sets': {
+                'k': 5,
+                'smoothiter': 0,
+                'flipflag': False,
+                'viewpos': [0, 0, 0]
+            },
+            'surface_reconstruction_screened_poisson': {
+                'depth': 8,
+                'cgdepth': 0,
+                'fulldepth': 5,
+                'visiblelayer': False,
+                'scale': 1.1,
+                'samplespernode': 1.5,
+                'pointweight': 4,
+                'iters': 8,
+                'confidence': False,
+                'preclean': False
+            }
         }
-      }
     }
 
     def setUp(self):
