@@ -5,54 +5,53 @@ from .surface_strategy import SurfaceStrategy
 
 
 class Open3dSurface(SurfaceStrategy):
-
     parameters = {
-      'estimate_normals': [
-          {
-              'name': 'fast_normal_computation',
-              'description': 'Fast normal estimation',
-              'value': True
-          },
-          {
-              'name': 'normals',
-              'description': 'Points normals',
-              'value': (1, 3)
-          }
-      ],
-      'orient_normals_consistent_tangent_plane': [
-          {
-              'name': 'k',
-              'description': 'Nearest neighbors',
-              'value': 100
-          }
-      ],
-      'surface_reconstruction_screened_poisson': [
-          {
-              'name': 'depth',
-              'description': 'Maximum depth of the tree',
-              'value': 8
-          },
-          {
-              'name': 'width',
-              'description': 'Target width',
-              'value': 0
-          },
-          {
-              'name': 'scale',
-              'description': 'Ratio between the diameter of the cube',
-              'value': 1.1
-          },
-          {
-              'name': 'linear_fit',
-              'description': 'Use linear interpolation?',
-              'value': False
-          },
-          {
-              'name': 'n_threads',
-              'description': 'Number of threads used for reconstruction',
-              'value': -1
-          }
-      ]
+        'estimate_normals': [
+            {
+                'name': 'fast_normal_computation',
+                'description': 'Fast normal estimation',
+                'value': True
+            },
+            {
+                'name': 'normals',
+                'description': 'Points normals',
+                'value': (1, 3)
+            }
+        ],
+        'orient_normals_consistent_tangent_plane': [
+            {
+                'name': 'k',
+                'description': 'Nearest neighbors',
+                'value': 100
+            }
+        ],
+        'surface_reconstruction_screened_poisson': [
+            {
+                'name': 'depth',
+                'description': 'Maximum depth of the tree',
+                'value': 8
+            },
+            {
+                'name': 'width',
+                'description': 'Target width',
+                'value': 0
+            },
+            {
+                'name': 'scale',
+                'description': 'Ratio between the diameter of the cube',
+                'value': 1.1
+            },
+            {
+                'name': 'linear_fit',
+                'description': 'Use linear interpolation?',
+                'value': False
+            },
+            {
+                'name': 'n_threads',
+                'description': 'Number of threads used for reconstruction',
+                'value': -1
+            }
+        ]
     }
 
     def __init__(self, point_cloud_file="", output_file="", clean_up=True):
@@ -60,14 +59,16 @@ class Open3dSurface(SurfaceStrategy):
         self.point_cloud = PointCloud()
         self.mesh = TriangleMesh()
 
+        # raise ValueError(f"Contains the {point_cloud_file} attribute: {output_file}")
+
         super().__init__(point_cloud_file, output_file, clean_up)
 
     def load_file(self, file_path: str) -> PointCloud:
         print('Load point cloud file')
 
         self.point_cloud = o3d.io.read_point_cloud(
-          file_path,
-          print_progress=True
+            file_path,
+            print_progress=True
         )
 
         print(np.asarray(self.point_cloud.points))
@@ -124,12 +125,12 @@ class Open3dSurface(SurfaceStrategy):
 
             # Save the generated Surface in a .ply file
             result = o3d.io.write_triangle_mesh(
-              output_file,
-              self.mesh,
-              compressed=True,
-              write_vertex_colors=True,
-              write_vertex_normals=True,
-              print_progress=True
+                output_file,
+                self.mesh,
+                compressed=True,
+                write_vertex_colors=True,
+                write_vertex_normals=True,
+                print_progress=True
             )
 
             if not result:

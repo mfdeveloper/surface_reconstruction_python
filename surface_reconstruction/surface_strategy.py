@@ -56,6 +56,19 @@ class SurfaceStrategy(ABC):
         """
         raise NotImplementedError
 
+    def poisson(self, json_filters: str = ""):
+        """
+        A surface reconstruction triangle method invoked by each library
+
+        :param json_filters:
+        :return:
+        """
+        if len(json_filters) == 0:
+            return self.poisson_mesh(save_file=True)
+
+        data = json.loads(json_filters)
+        return self.poisson_mesh(save_file=True, **{'filters': data})
+
     def default_parameters(self, return_json=True) -> Union[dict, str]:
         """
         Get all parameters required for all filters/methods to do a
